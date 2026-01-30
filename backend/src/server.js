@@ -7,6 +7,8 @@ try {
   const mongoose = require('mongoose');
   const { createServer } = require('http');
   const { Server } = require('socket.io');
+  const compression = require('compression');
+  const helmet = require('helmet');
 
   // Route imports
   const authRoutes = require('./routes/auth');
@@ -32,6 +34,8 @@ try {
   });
 
   // Middleware
+  app.use(helmet()); // Security Headers
+  app.use(compression()); // Gzip Compression
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(cors());

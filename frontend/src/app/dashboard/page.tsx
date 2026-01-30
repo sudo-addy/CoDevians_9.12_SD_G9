@@ -10,9 +10,9 @@ import InvestorOverviewHeader from '@/components/dashboard/InvestorOverviewHeade
 import PortfolioPerformanceChart from '@/components/dashboard/PortfolioPerformanceChart';
 import EnhancedAIRecommendations from '@/components/dashboard/EnhancedAIRecommendations';
 import HoldingsTable from '@/components/dashboard/HoldingsTable';
-import MarketMoversWidget from '@/components/dashboard/MarketMoversWidget';
+import MarketPulseTicker from '@/components/dashboard/MarketPulseTicker';
 import TokenizationTracker from '@/components/dashboard/TokenizationTracker';
-import SmartAlerts from '@/components/dashboard/SmartAlerts';
+import SmartAlertsCenter from '@/components/dashboard/SmartAlertsCenter';
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -59,8 +59,8 @@ export default function DashboardPage() {
 
       <div className="lg:pl-64 flex flex-col min-h-screen relative z-10">
 
-        {/* Top Ticker - Hide for Admin maybe? Or keep global context */}
-        {!isAdmin && <MarketMoversWidget />}
+        {/* Top Ticker - Global Pro Feature */}
+        {!isAdmin && <MarketPulseTicker />}
 
         {/* Header / Nav */}
         <header className="px-6 py-4 flex items-center justify-between sticky top-0 bg-[#050b14]/80 backdrop-blur-xl z-30 border-b border-white/5">
@@ -180,7 +180,7 @@ export default function DashboardPage() {
                 </div>
                 <div className="space-y-6">
                   <TokenizationTracker />
-                  <SmartAlerts />
+                  <SmartAlertsCenter />
                   <div className="glass-panel p-6 rounded-2xl bg-amber-900/10 border-amber-500/20">
                     <h3 className="text-sm font-bold text-amber-500 uppercase flex items-center gap-2 mb-2"><Award className="w-4 h-4" /> Institutional Access</h3>
                     <p className="text-xs text-slate-400 mb-4">You have access to Dark Pool liquidity and OTC desk.</p>

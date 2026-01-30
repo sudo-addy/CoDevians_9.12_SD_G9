@@ -1,0 +1,815 @@
+{
+  "project": {
+    "id": "9.12",
+    "name": "Infrastructure Bond Tokenization Platform",
+    "type": "Fintech Startup",
+    "description": "Platform for Tokenizing Infrastructure Bonds for Public-Private Funding",
+    "version": "1.0.0",
+    "hackathon": "CIH 3.0",
+    "sdg": "SDG 9 - Industry, Innovation and Infrastructure"
+  },
+  "architecture": {
+    "pattern": "Microservices with MVC",
+    "deployment": "Containerized (Docker)",
+    "scalability": "Horizontal scaling with load balancing",
+    "security": "OAuth 2.0, JWT, End-to-End Encryption"
+  },
+  "technology_stack": {
+    "frontend": {
+      "framework": "Next.js 14+",
+      "language": "TypeScript/JavaScript",
+      "styling": "Tailwind CSS / CSS Modules",
+      "state_management": "React Context API / Redux Toolkit",
+      "ui_library": "shadcn/ui, Radix UI",
+      "charts": "Recharts, Chart.js",
+      "animations": "Framer Motion"
+    },
+    "backend": {
+      "runtime": "Node.js 18+",
+      "framework": "Express.js",
+      "language": "JavaScript/TypeScript",
+      "api_type": "RESTful API + GraphQL (optional)",
+      "websocket": "Socket.io for real-time updates",
+      "authentication": "JWT, Passport.js, OAuth 2.0",
+      "validation": "Joi, Express Validator"
+    },
+    "database": {
+      "primary": "MongoDB 6.0+",
+      "orm": "Mongoose",
+      "caching": "Redis",
+      "search": "Elasticsearch (optional)",
+      "backup": "Automated daily backups"
+    },
+    "blockchain": {
+      "platform": "Ethereum / Polygon",
+      "smart_contracts": "Solidity",
+      "web3_library": "ethers.js / web3.js",
+      "wallet_integration": "MetaMask, WalletConnect"
+    },
+    "payment": {
+      "primary": "e-Rupees (Digital Rupee)",
+      "gateway": "CBDC API Integration",
+      "escrow": "Smart Contract Based",
+      "settlement": "Real-time settlement engine"
+    },
+    "external_integrations": {
+      "market_data": ["Binance API", "Dhan API", "AngelOne API", "MPIndia API"],
+      "broker_apis": "Multi-broker integration framework",
+      "kyc": "Aadhaar eKYC, DigiLocker",
+      "notification": "Firebase Cloud Messaging, Twilio"
+    },
+    "devops": {
+      "containerization": "Docker",
+      "orchestration": "Docker Compose / Kubernetes",
+      "ci_cd": "GitHub Actions",
+      "monitoring": "Prometheus, Grafana",
+      "logging": "Winston, ELK Stack",
+      "testing": "Jest, Mocha, Chai, Cypress"
+    }
+  },
+  "system_architecture": {
+    "layers": [
+      {
+        "name": "Presentation Layer",
+        "components": ["Next.js Frontend", "Mobile Web Views", "Admin Dashboard"],
+        "responsibility": "User interface, client-side logic, responsive design"
+      },
+      {
+        "name": "API Gateway Layer",
+        "components": ["API Gateway", "Load Balancer", "Rate Limiter"],
+        "responsibility": "Request routing, authentication, rate limiting"
+      },
+      {
+        "name": "Business Logic Layer",
+        "components": ["Bond Service", "Trading Service", "Analytics Service", "AI Service"],
+        "responsibility": "Core business logic, data processing, calculations"
+      },
+      {
+        "name": "Integration Layer",
+        "components": ["Broker Integration", "Payment Gateway", "Market Data Aggregator"],
+        "responsibility": "External API integration, data synchronization"
+      },
+      {
+        "name": "Data Layer",
+        "components": ["MongoDB", "Redis Cache", "File Storage"],
+        "responsibility": "Data persistence, caching, document storage"
+      },
+      {
+        "name": "Blockchain Layer",
+        "components": ["Smart Contracts", "Token Management", "Transaction Handler"],
+        "responsibility": "Bond tokenization, blockchain transactions"
+      }
+    ]
+  },
+  "directory_structure": {
+    "root": "/",
+    "structure": {
+      "frontend": {
+        "path": "/frontend",
+        "subdirectories": {
+          "src": {
+            "app": "Next.js app directory (pages, layouts, routes)",
+            "components": {
+              "common": "Reusable UI components",
+              "layout": "Layout components (Header, Footer, Sidebar)",
+              "dashboard": "Dashboard specific components",
+              "bonds": "Bond listing and details components",
+              "trading": "Trading interface components",
+              "analytics": "Charts and analytics components"
+            },
+            "lib": {
+              "api": "API client functions",
+              "utils": "Utility functions",
+              "hooks": "Custom React hooks",
+              "context": "React context providers"
+            },
+            "styles": "Global styles and Tailwind config",
+            "types": "TypeScript type definitions",
+            "constants": "Application constants",
+            "config": "Configuration files"
+          },
+          "public": "Static assets (images, icons, fonts)"
+        }
+      },
+      "backend": {
+        "path": "/backend",
+        "subdirectories": {
+          "src": {
+            "controllers": {
+              "authController.js": "Authentication logic",
+              "bondController.js": "Bond CRUD operations",
+              "tradingController.js": "Trading operations",
+              "userController.js": "User management",
+              "paymentController.js": "Payment processing",
+              "analyticsController.js": "Analytics and reporting",
+              "brokerController.js": "Broker integration management"
+            },
+            "models": {
+              "User.js": "User schema and methods",
+              "Bond.js": "Bond schema",
+              "Transaction.js": "Transaction records",
+              "Portfolio.js": "User portfolio",
+              "Subscription.js": "Subscription plans",
+              "BrokerAccount.js": "Broker account linking",
+              "Analytics.js": "Analytics data"
+            },
+            "routes": {
+              "auth.routes.js": "Authentication endpoints",
+              "bond.routes.js": "Bond management endpoints",
+              "trading.routes.js": "Trading endpoints",
+              "user.routes.js": "User profile endpoints",
+              "payment.routes.js": "Payment endpoints",
+              "analytics.routes.js": "Analytics endpoints",
+              "api.routes.js": "Custom API endpoints"
+            },
+            "middleware": {
+              "auth.middleware.js": "JWT verification",
+              "validation.middleware.js": "Request validation",
+              "rateLimit.middleware.js": "Rate limiting",
+              "error.middleware.js": "Error handling",
+              "logger.middleware.js": "Request logging"
+            },
+            "services": {
+              "bondService.js": "Bond business logic",
+              "tradingService.js": "Trading engine",
+              "aiService.js": "AI/ML predictions",
+              "paymentService.js": "Payment processing",
+              "brokerIntegration.js": "Multi-broker integration",
+              "marketData.js": "Market data aggregation",
+              "notificationService.js": "Email/SMS notifications",
+              "blockchainService.js": "Blockchain interactions"
+            },
+            "utils": {
+              "encryption.js": "Encryption utilities",
+              "validation.js": "Data validation",
+              "helpers.js": "Helper functions",
+              "constants.js": "Application constants",
+              "logger.js": "Logging configuration"
+            },
+            "config": {
+              "database.js": "MongoDB configuration",
+              "redis.js": "Redis configuration",
+              "server.js": "Server configuration",
+              "blockchain.js": "Blockchain config",
+              "payment.js": "Payment gateway config"
+            }
+          },
+          "server.js": "Main server entry point (Port 3210)"
+        }
+      },
+      "blockchain": {
+        "path": "/blockchain",
+        "subdirectories": {
+          "contracts": {
+            "BondToken.sol": "ERC-20 bond token contract",
+            "BondMarketplace.sol": "Trading marketplace contract",
+            "Escrow.sol": "Payment escrow contract",
+            "Governance.sol": "Voting and governance"
+          },
+          "scripts": {
+            "deploy.js": "Deployment scripts",
+            "verify.js": "Contract verification"
+          },
+          "test": "Smart contract tests"
+        }
+      },
+      "database": {
+        "path": "/database",
+        "subdirectories": {
+          "migrations": "Database migration scripts",
+          "seeds": "Seed data for development",
+          "backups": "Backup storage location"
+        }
+      },
+      "shared": {
+        "path": "/shared",
+        "subdirectories": {
+          "types": "Shared TypeScript types",
+          "constants": "Shared constants",
+          "utils": "Shared utility functions"
+        }
+      },
+      "docker": {
+        "Dockerfile.frontend": "Frontend container",
+        "Dockerfile.backend": "Backend container",
+        "docker-compose.yml": "Multi-container orchestration",
+        "docker-compose.dev.yml": "Development environment",
+        "docker-compose.prod.yml": "Production environment"
+      },
+      "tests": {
+        "unit": "Unit tests",
+        "integration": "Integration tests",
+        "e2e": "End-to-end tests"
+      },
+      "docs": {
+        "api": "API documentation",
+        "architecture": "Architecture diagrams",
+        "deployment": "Deployment guides"
+      }
+    }
+  },
+  "database_schema": {
+    "collections": {
+      "users": {
+        "description": "User accounts and profiles",
+        "fields": {
+          "_id": "ObjectId - Primary key",
+          "email": "String - Unique email",
+          "password": "String - Hashed password",
+          "name": "String - Full name",
+          "phone": "String - Phone number",
+          "kyc_status": "String - pending|verified|rejected",
+          "kyc_documents": "Array - Document references",
+          "wallet_address": "String - Blockchain wallet",
+          "subscription_tier": "String - free|basic|premium|enterprise",
+          "subscription_expiry": "Date - Subscription end date",
+          "broker_accounts": "Array - Linked broker accounts",
+          "api_key": "String - Custom API key",
+          "api_secret": "String - Hashed API secret",
+          "preferences": "Object - User preferences",
+          "created_at": "Date - Account creation",
+          "updated_at": "Date - Last update"
+        },
+        "indexes": ["email", "wallet_address", "subscription_tier"]
+      },
+      "bonds": {
+        "description": "Infrastructure bond listings",
+        "fields": {
+          "_id": "ObjectId - Primary key",
+          "bond_id": "String - Unique bond identifier",
+          "issuer": "String - Bond issuer name",
+          "project_name": "String - Infrastructure project",
+          "project_type": "String - road|bridge|airport|port|energy",
+          "token_symbol": "String - Blockchain token symbol",
+          "contract_address": "String - Smart contract address",
+          "face_value": "Number - Bond face value",
+          "coupon_rate": "Number - Interest rate percentage",
+          "maturity_date": "Date - Bond maturity",
+          "issue_date": "Date - Issue date",
+          "total_supply": "Number - Total bonds available",
+          "available_supply": "Number - Bonds available for trading",
+          "minimum_investment": "Number - Minimum purchase amount",
+          "risk_category": "String - low|medium|high",
+          "credit_rating": "String - AAA|AA|A|BBB etc",
+          "status": "String - active|closed|matured",
+          "documents": "Array - Legal documents",
+          "metadata": "Object - Additional details",
+          "created_at": "Date",
+          "updated_at": "Date"
+        },
+        "indexes": ["bond_id", "issuer", "status", "risk_category"]
+      },
+      "transactions": {
+        "description": "All trading transactions",
+        "fields": {
+          "_id": "ObjectId - Primary key",
+          "transaction_id": "String - Unique transaction ID",
+          "user_id": "ObjectId - Reference to user",
+          "bond_id": "ObjectId - Reference to bond",
+          "type": "String - buy|sell|transfer",
+          "quantity": "Number - Number of bonds",
+          "price": "Number - Transaction price per bond",
+          "total_amount": "Number - Total transaction value",
+          "fees": "Number - Platform fees",
+          "payment_method": "String - e-rupees|wallet",
+          "payment_status": "String - pending|completed|failed",
+          "blockchain_tx_hash": "String - Blockchain transaction hash",
+          "broker_reference": "String - Broker transaction ID (if applicable)",
+          "timestamp": "Date - Transaction timestamp",
+          "settlement_date": "Date - Settlement date",
+          "metadata": "Object - Additional transaction data"
+        },
+        "indexes": ["transaction_id", "user_id", "bond_id", "timestamp", "payment_status"]
+      },
+      "portfolios": {
+        "description": "User portfolio holdings",
+        "fields": {
+          "_id": "ObjectId - Primary key",
+          "user_id": "ObjectId - Reference to user",
+          "holdings": "Array - [{bond_id, quantity, avg_price, current_value}]",
+          "total_investment": "Number - Total amount invested",
+          "current_value": "Number - Current portfolio value",
+          "total_returns": "Number - Profit/Loss",
+          "return_percentage": "Number - ROI percentage",
+          "updated_at": "Date - Last calculation"
+        },
+        "indexes": ["user_id"]
+      },
+      "subscriptions": {
+        "description": "Subscription plan details and history",
+        "fields": {
+          "_id": "ObjectId - Primary key",
+          "user_id": "ObjectId - Reference to user",
+          "plan_type": "String - basic|premium|enterprise",
+          "billing_cycle": "String - monthly|yearly",
+          "amount": "Number - Subscription amount",
+          "start_date": "Date - Subscription start",
+          "end_date": "Date - Subscription end",
+          "auto_renew": "Boolean - Auto renewal flag",
+          "payment_id": "String - Payment reference",
+          "status": "String - active|expired|cancelled",
+          "features": "Array - List of enabled features"
+        },
+        "indexes": ["user_id", "status", "end_date"]
+      },
+      "broker_accounts": {
+        "description": "Linked broker account information",
+        "fields": {
+          "_id": "ObjectId - Primary key",
+          "user_id": "ObjectId - Reference to user",
+          "broker_name": "String - Broker name (Dhan|AngelOne|Zerodha etc)",
+          "broker_user_id": "String - Broker account ID",
+          "api_key": "String - Encrypted broker API key",
+          "api_secret": "String - Encrypted broker API secret",
+          "access_token": "String - OAuth access token",
+          "is_active": "Boolean - Account active status",
+          "last_sync": "Date - Last synchronization",
+          "created_at": "Date"
+        },
+        "indexes": ["user_id", "broker_name"]
+      },
+      "analytics": {
+        "description": "AI-generated analytics and predictions",
+        "fields": {
+          "_id": "ObjectId - Primary key",
+          "bond_id": "ObjectId - Reference to bond",
+          "prediction_date": "Date - When prediction was made",
+          "expected_return": "Number - Predicted return percentage",
+          "risk_score": "Number - AI-calculated risk (0-100)",
+          "confidence_level": "Number - Prediction confidence (0-1)",
+          "market_sentiment": "String - positive|neutral|negative",
+          "recommended_action": "String - buy|hold|sell",
+          "factors": "Array - Factors affecting prediction",
+          "historical_accuracy": "Number - Past prediction accuracy",
+          "valid_until": "Date - Prediction validity"
+        },
+        "indexes": ["bond_id", "prediction_date"]
+      },
+      "paper_trades": {
+        "description": "Paper trading (practice) transactions",
+        "fields": {
+          "_id": "ObjectId - Primary key",
+          "user_id": "ObjectId - Reference to user",
+          "bond_id": "ObjectId - Reference to bond",
+          "type": "String - buy|sell",
+          "quantity": "Number - Number of bonds",
+          "price": "Number - Trade price",
+          "virtual_balance": "Number - User's practice balance",
+          "timestamp": "Date - Trade timestamp",
+          "pnl": "Number - Profit and Loss"
+        },
+        "indexes": ["user_id", "timestamp"]
+      },
+      "api_usage": {
+        "description": "Custom API usage tracking",
+        "fields": {
+          "_id": "ObjectId - Primary key",
+          "user_id": "ObjectId - Reference to user",
+          "api_key": "String - API key used",
+          "endpoint": "String - API endpoint called",
+          "method": "String - HTTP method",
+          "request_count": "Number - Number of requests",
+          "timestamp": "Date - Request time",
+          "response_time": "Number - Response time in ms",
+          "status_code": "Number - HTTP status code"
+        },
+        "indexes": ["user_id", "timestamp", "api_key"]
+      }
+    }
+  },
+  "api_endpoints": {
+    "base_url": "http://localhost:3210/api/v1",
+    "authentication": {
+      "POST /auth/register": "User registration",
+      "POST /auth/login": "User login (returns JWT)",
+      "POST /auth/logout": "User logout",
+      "POST /auth/refresh": "Refresh JWT token",
+      "POST /auth/forgot-password": "Password reset request",
+      "POST /auth/reset-password": "Reset password with token",
+      "GET /auth/verify-email": "Email verification"
+    },
+    "users": {
+      "GET /users/profile": "Get user profile",
+      "PUT /users/profile": "Update user profile",
+      "POST /users/kyc": "Submit KYC documents",
+      "GET /users/kyc-status": "Check KYC verification status",
+      "POST /users/link-wallet": "Link blockchain wallet",
+      "GET /users/api-credentials": "Get custom API key/secret",
+      "POST /users/regenerate-api-key": "Generate new API key"
+    },
+    "bonds": {
+      "GET /bonds": "List all bonds (with filters)",
+      "GET /bonds/:id": "Get bond details",
+      "GET /bonds/:id/analytics": "Get AI analytics for bond",
+      "GET /bonds/search": "AI-based bond search",
+      "GET /bonds/recommendations": "Personalized recommendations",
+      "GET /bonds/compare": "Compare multiple bonds",
+      "GET /bonds/:id/documents": "Get bond legal documents"
+    },
+    "trading": {
+      "POST /trading/buy": "Buy bonds",
+      "POST /trading/sell": "Sell bonds",
+      "POST /trading/bid": "Place bid on bidding platform",
+      "GET /trading/order-book": "Get order book",
+      "GET /trading/trades": "Get user trade history",
+      "GET /trading/market-depth": "Get market depth data",
+      "POST /trading/paper-trade": "Execute paper trade"
+    },
+    "portfolio": {
+      "GET /portfolio": "Get user portfolio",
+      "GET /portfolio/holdings": "Get bond holdings",
+      "GET /portfolio/performance": "Get portfolio performance",
+      "GET /portfolio/transactions": "Get transaction history",
+      "GET /portfolio/returns": "Calculate returns and PnL"
+    },
+    "payments": {
+      "POST /payments/initiate": "Initiate payment",
+      "POST /payments/verify": "Verify payment status",
+      "GET /payments/history": "Payment history",
+      "POST /payments/erupee": "Process e-Rupee payment",
+      "GET /payments/balance": "Get wallet balance"
+    },
+    "subscriptions": {
+      "GET /subscriptions/plans": "List subscription plans",
+      "POST /subscriptions/subscribe": "Subscribe to plan",
+      "PUT /subscriptions/upgrade": "Upgrade subscription",
+      "DELETE /subscriptions/cancel": "Cancel subscription",
+      "GET /subscriptions/current": "Get current subscription",
+      "GET /subscriptions/features": "Get plan features"
+    },
+    "brokers": {
+      "GET /brokers/supported": "List supported brokers",
+      "POST /brokers/link": "Link broker account",
+      "DELETE /brokers/unlink/:id": "Unlink broker account",
+      "GET /brokers/accounts": "Get linked broker accounts",
+      "POST /brokers/sync": "Sync broker data",
+      "GET /brokers/:id/positions": "Get positions from broker"
+    },
+    "analytics": {
+      "GET /analytics/bond/:id/prediction": "Get AI predictions",
+      "GET /analytics/bond/:id/risk": "Get risk assessment",
+      "GET /analytics/bond/:id/returns": "Expected returns graph",
+      "GET /analytics/market/top-players": "Top performing bonds",
+      "GET /analytics/market/trends": "Market trends analysis",
+      "GET /analytics/transparency": "Platform transparency report"
+    },
+    "market_data": {
+      "GET /market/binance": "Binance market data",
+      "GET /market/dhan": "Dhan market data",
+      "GET /market/angelone": "AngelOne market data",
+      "GET /market/mpindia": "MPIndia market data",
+      "GET /market/aggregated": "Aggregated market data"
+    },
+    "custom_api": {
+      "GET /custom/*": "User's custom API endpoints",
+      "POST /custom/*": "User's custom API endpoints",
+      "PUT /custom/*": "User's custom API endpoints",
+      "DELETE /custom/*": "User's custom API endpoints"
+    },
+    "admin": {
+      "POST /admin/bonds/create": "Create new bond listing",
+      "PUT /admin/bonds/:id": "Update bond details",
+      "DELETE /admin/bonds/:id": "Delist bond",
+      "GET /admin/users": "List all users",
+      "PUT /admin/users/:id/kyc": "Approve/Reject KYC",
+      "GET /admin/analytics": "Platform analytics",
+      "GET /admin/transactions": "All platform transactions"
+    }
+  },
+  "features": {
+    "subscription_features": {
+      "free": {
+        "price": 0,
+        "features": [
+          "Basic bond listings",
+          "Manual search",
+          "Limited transaction history",
+          "Basic portfolio view"
+        ]
+      },
+      "basic": {
+        "price_monthly": 299,
+        "price_yearly": 2999,
+        "features": [
+          "Expected return graphs",
+          "Risk assessment reports",
+          "Extended transaction history",
+          "Email notifications",
+          "Basic analytics dashboard"
+        ]
+      },
+      "premium": {
+        "price_monthly": 999,
+        "price_yearly": 9999,
+        "features": [
+          "All Basic features",
+          "Early access to new projects",
+          "Detailed transparency reports",
+          "Top player analytics",
+          "AI-based bond search",
+          "Paper trading (up to ₹10L virtual)",
+          "Priority customer support",
+          "Advanced charts and analytics"
+        ]
+      },
+      "enterprise": {
+        "price_monthly": 4999,
+        "price_yearly": 49999,
+        "features": [
+          "All Premium features",
+          "Bond vs Share comparison",
+          "Bidding platform access",
+          "Custom API access",
+          "Investor rights management",
+          "Unlimited paper trading",
+          "Multi-broker integration",
+          "Dedicated account manager",
+          "White-label options",
+          "Priority order execution"
+        ]
+      }
+    },
+    "ai_ml_features": {
+      "bond_recommendation_engine": {
+        "algorithm": "Collaborative filtering + Content-based filtering",
+        "inputs": ["User profile", "Portfolio", "Risk appetite", "Investment goals"],
+        "outputs": ["Recommended bonds", "Confidence scores"]
+      },
+      "risk_assessment": {
+        "algorithm": "Random Forest + Neural Networks",
+        "inputs": ["Historical data", "Market indicators", "Credit ratings", "Project details"],
+        "outputs": ["Risk score (0-100)", "Risk category", "Risk factors"]
+      },
+      "return_prediction": {
+        "algorithm": "LSTM + Time Series Analysis",
+        "inputs": ["Historical returns", "Market trends", "Economic indicators"],
+        "outputs": ["Expected returns", "Confidence intervals", "Time-based predictions"]
+      },
+      "sentiment_analysis": {
+        "algorithm": "NLP + Transformer models",
+        "inputs": ["News articles", "Social media", "Financial reports"],
+        "outputs": ["Market sentiment", "Sentiment score", "Key topics"]
+      }
+    }
+  },
+  "security": {
+    "authentication": {
+      "method": "JWT (JSON Web Tokens)",
+      "token_expiry": "1 hour (access), 7 days (refresh)",
+      "password_hashing": "bcrypt (10 rounds)",
+      "2fa": "Optional TOTP-based 2FA"
+    },
+    "authorization": {
+      "rbac": "Role-Based Access Control",
+      "roles": ["user", "admin", "broker", "issuer"],
+      "permissions": "Granular permission system"
+    },
+    "data_protection": {
+      "encryption_at_rest": "AES-256",
+      "encryption_in_transit": "TLS 1.3",
+      "pii_encryption": "Field-level encryption for sensitive data",
+      "api_security": "API key + HMAC signing"
+    },
+    "compliance": {
+      "kyc_aml": "Aadhaar-based KYC/AML",
+      "data_privacy": "GDPR-compliant (where applicable)",
+      "audit_logs": "Complete audit trail for all transactions",
+      "regulatory": "SEBI compliance for securities trading"
+    },
+    "smart_contract_security": {
+      "auditing": "Third-party smart contract audit",
+      "testing": "Comprehensive unit and integration tests",
+      "upgrade_pattern": "Proxy pattern for upgradability",
+      "access_control": "Multi-sig for critical operations"
+    }
+  },
+  "deployment": {
+    "environments": {
+      "development": {
+        "frontend": "http://localhost:3000",
+        "backend": "http://localhost:3210",
+        "database": "mongodb://localhost:27017/bond_platform_dev",
+        "redis": "redis://localhost:6379"
+      },
+      "staging": {
+        "frontend": "https://staging.bondplatform.com",
+        "backend": "https://api-staging.bondplatform.com",
+        "database": "MongoDB Atlas - Staging Cluster",
+        "redis": "Redis Cloud - Staging"
+      },
+      "production": {
+        "frontend": "https://bondplatform.com",
+        "backend": "https://api.bondplatform.com",
+        "database": "MongoDB Atlas - Production Cluster (Replica Set)",
+        "redis": "Redis Cloud - Production (High Availability)",
+        "cdn": "Cloudflare CDN"
+      }
+    },
+    "docker_configuration": {
+      "containers": [
+        "frontend-app (Next.js on port 3000)",
+        "backend-api (Express on port 3210)",
+        "mongodb (port 27017)",
+        "redis (port 6379)",
+        "nginx (reverse proxy on port 80/443)"
+      ],
+      "volumes": [
+        "mongodb-data",
+        "redis-data",
+        "uploads",
+        "logs"
+      ],
+      "networks": [
+        "frontend-network",
+        "backend-network",
+        "database-network"
+      ]
+    },
+    "ci_cd_pipeline": {
+      "trigger": "Push to main/develop branch",
+      "stages": [
+        "Code linting (ESLint, Prettier)",
+        "Unit tests (Jest)",
+        "Integration tests",
+        "Build Docker images",
+        "Security scanning (Snyk, OWASP)",
+        "Deploy to staging",
+        "E2E tests (Cypress)",
+        "Manual approval",
+        "Deploy to production"
+      ]
+    },
+    "monitoring": {
+      "application": "Prometheus + Grafana",
+      "logs": "ELK Stack (Elasticsearch, Logstash, Kibana)",
+      "errors": "Sentry",
+      "uptime": "UptimeRobot",
+      "performance": "New Relic / DataDog"
+    }
+  },
+  "scalability": {
+    "load_balancing": "Nginx / AWS ALB",
+    "horizontal_scaling": "Multiple backend instances",
+    "database_scaling": "MongoDB sharding + Read replicas",
+    "caching_strategy": "Redis for session, API responses, market data",
+    "cdn": "Static asset delivery via CDN",
+    "microservices": "Future migration path to microservices"
+  },
+  "third_party_integrations": {
+    "market_data_apis": {
+      "binance": {
+        "endpoint": "https://api.binance.com",
+        "purpose": "Cryptocurrency market data",
+        "rate_limit": "1200 requests/minute"
+      },
+      "dhan": {
+        "endpoint": "https://api.dhan.co",
+        "purpose": "Indian stock market data",
+        "authentication": "API Key"
+      },
+      "angelone": {
+        "endpoint": "https://apiconnect.angelbroking.com",
+        "purpose": "Trading and market data",
+        "authentication": "OAuth 2.0"
+      },
+      "mpindia": {
+        "endpoint": "https://api.mpindia.com",
+        "purpose": "Municipal bond data",
+        "authentication": "API Key"
+      }
+    },
+    "payment_integration": {
+      "erupee_cbdc": {
+        "provider": "Reserve Bank of India",
+        "type": "Central Bank Digital Currency",
+        "settlement": "Real-time",
+        "fees": "Minimal/Zero"
+      }
+    },
+    "kyc_verification": {
+      "aadhaar_ekyc": {
+        "provider": "UIDAI",
+        "verification_time": "< 5 seconds",
+        "success_rate": "99%"
+      },
+      "digilocker": {
+        "purpose": "Document verification",
+        "supported_docs": ["PAN", "Aadhaar", "Driving License"]
+      }
+    },
+    "notification_services": {
+      "email": "SendGrid / AWS SES",
+      "sms": "Twilio / MSG91",
+      "push": "Firebase Cloud Messaging"
+    }
+  },
+  "testing_strategy": {
+    "unit_tests": {
+      "framework": "Jest",
+      "coverage_target": "80%",
+      "scope": "All services, controllers, utilities"
+    },
+    "integration_tests": {
+      "framework": "Mocha + Chai",
+      "scope": "API endpoints, database operations"
+    },
+    "e2e_tests": {
+      "framework": "Cypress",
+      "scope": "Critical user flows (registration, trading, payments)"
+    },
+    "load_testing": {
+      "tool": "Apache JMeter / K6",
+      "scenarios": ["1000 concurrent users", "Peak trading hours"]
+    },
+    "security_testing": {
+      "sast": "SonarQube",
+      "dast": "OWASP ZAP",
+      "dependency_scanning": "Snyk"
+    }
+  },
+  "development_workflow": {
+    "version_control": "Git (GitHub)",
+    "branching_strategy": "GitFlow",
+    "branches": {
+      "main": "Production-ready code",
+      "develop": "Integration branch",
+      "feature/*": "New features",
+      "bugfix/*": "Bug fixes",
+      "hotfix/*": "Production hotfixes"
+    },
+    "code_review": "Required for all PRs",
+    "commit_convention": "Conventional Commits",
+    "documentation": "JSDoc for code, Swagger for APIs"
+  },
+  "future_enhancements": {
+    "phase_2": [
+      "Mobile apps (React Native / Flutter)",
+      "Advanced trading algorithms",
+      "Social trading features",
+      "Robo-advisor integration",
+      "Multi-language support"
+    ],
+    "phase_3": [
+      "International bond markets",
+      "Institutional investor dashboard",
+      "Derivatives trading",
+      "Automated portfolio rebalancing",
+      "Machine learning model marketplace"
+    ]
+  },
+  "performance_targets": {
+    "api_response_time": "< 200ms (p95)",
+    "page_load_time": "< 2 seconds (FCP)",
+    "database_query_time": "< 50ms (indexed queries)",
+    "uptime_sla": "99.9%",
+    "concurrent_users": "10,000+",
+    "transactions_per_second": "1000+"
+  },
+  "documentation": {
+    "api_docs": "Swagger / OpenAPI 3.0",
+    "user_guide": "Comprehensive user documentation",
+    "developer_docs": "Technical documentation for developers",
+    "deployment_guide": "Step-by-step deployment instructions",
+    "architecture_diagrams": "System architecture and data flow diagrams"
+  }
+}

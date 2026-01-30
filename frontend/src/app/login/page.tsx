@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ShieldCheck, Lock, User, Building2, Briefcase, ChevronRight, Wallet } from 'lucide-react';
+import WalletConnectModule from '@/components/auth/WalletConnectModule';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -147,9 +148,7 @@ export default function LoginPage() {
             <div className="h-px flex-1 bg-white/10"></div>
           </div>
 
-          <button className="relative z-10 w-full border border-white/20 bg-white/5 text-blue-100 font-bold py-3 rounded-xl hover:bg-white/10 transition flex items-center justify-center gap-2">
-            <Wallet className="w-4 h-4 text-orange-400" /> Connect Wallet
-          </button>
+          <WalletConnectModule />
         </div>
 
         {/* Footer & Trust */}

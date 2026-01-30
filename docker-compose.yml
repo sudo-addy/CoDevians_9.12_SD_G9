@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:6.0
+    container_name: bond-platform-db
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: bond_platform
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - bond-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: bond-platform-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - bond-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: bond-platform-backend
+    ports:
+      - "3210:3210"
+    environment:
+      NODE_ENV: development
+      MONGODB_URI: mongodb://admin:password@mongodb:27017/bond_platform
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: your_super_secret_jwt_key_minimum_32_characters_long
+      CORS_ORIGIN: http://localhost:3000
+    depends_on:
+      - mongodb
+      - redis
+    volumes:
+      - ./backend/src:/app/src
+    networks:
+      - bond-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: bond-platform-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:3210/api/v1
+      NEXT_PUBLIC_SOCKET_URL: http://localhost:3210
+    depends_on:
+      - backend
+    networks:
+      - bond-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  bond-network:
+    driver: bridge

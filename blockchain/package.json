@@ -1,0 +1,18 @@
+{
+  "name": "bond-tokenization-contracts",
+  "version": "1.0.0",
+  "description": "Smart contracts for Infrastructure Bond Tokenization",
+  "scripts": {
+    "test": "hardhat test",
+    "compile": "hardhat compile",
+    "deploy": "hardhat run scripts/deploy.js --network mumbai",
+    "verify": "hardhat verify"
+  },
+  "devDependencies": {
+    "hardhat": "^2.14.0",
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "@openzeppelin/contracts": "^4.9.0",
+    "chai": "^4.3.7",
+    "ethers": "^6.4.0"
+  }
+}

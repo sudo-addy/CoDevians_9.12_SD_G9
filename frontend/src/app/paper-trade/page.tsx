@@ -7,7 +7,7 @@ import PaperTradeTerminal from '@/components/paper-trading/PaperTradeTerminal';
 import AITradingCoach from '@/components/paper-trading/AITradingCoach';
 import PaperPortfolio from '@/components/paper-trading/PaperPortfolio';
 import GamificationPanel from '@/components/paper-trading/GamificationPanel';
-import { Menu, Zap } from 'lucide-react';
+import { Menu, Zap, BookOpen } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -36,37 +36,56 @@ export default function PaperTradingPage() {
                         <Menu className="w-6 h-6 text-white" />
                     </div>
 
-                    <div className="font-bold text-lg text-white flex items-center gap-2">
-                        Paper Trading Arena <span className="text-xs bg-indigo-500 text-white px-2 py-0.5 rounded uppercase font-bold tracking-wider">Simulated</span>
+                    <div className="flex flex-col">
+                        <div className="font-bold text-lg text-white flex items-center gap-2">
+                            Paper Trading Arena <span className="text-[10px] bg-indigo-500 text-white px-2 py-0.5 rounded uppercase font-bold tracking-wider">Simulated</span>
+                        </div>
+                        <div className="text-xs text-slate-400 flex items-center gap-1">
+                            <BookOpen className="w-3 h-3 text-amber-500" /> Learning Mode Active • SEBI Compliant Simulation
+                        </div>
                     </div>
 
                     <div className="flex items-center gap-4">
-                        <button className="px-4 py-2 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white text-xs font-bold rounded-lg shadow-lg flex items-center gap-2 transition transform hover:scale-105">
-                            <Zap className="w-3 h-3 fill-current" /> Go Live Trading
+                        <button className="hidden md:flex px-4 py-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 text-white text-xs font-bold rounded-lg shadow-lg items-center gap-2 transition transform hover:scale-105">
+                            <Zap className="w-3 h-3 fill-current" /> Switch to Live
                         </button>
                     </div>
                 </header>
 
-                <main className="p-6">
+                <main className="p-4 lg:p-6 space-y-6">
+                    {/* Top Stats Strip (Risk Meter & Balance) */}
                     <PaperWalletOverview />
 
-                    <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 xl:grid-cols-12 gap-6">
 
-                        {/* Left Column (2/3) */}
-                        <div className="xl:col-span-2 space-y-6">
-                            <div className="h-[400px]">
+                        {/* LEFT COLUMN: Market & Charts (7 cols) */}
+                        <div className="xl:col-span-8 space-y-6">
+
+                            {/* Market Chart / Marketplace */}
+                            <div className="h-[500px] w-full">
                                 <PracticeMarketplace />
                             </div>
-                            <PaperPortfolio />
+
+                            {/* Portfolio Holdings & History */}
+                            <div className="min-h-[300px]">
+                                <PaperPortfolio />
+                            </div>
                         </div>
 
-                        {/* Right Column (1/3) */}
-                        <div className="space-y-6">
+                        {/* RIGHT COLUMN: Action & Coaching (5 cols) */}
+                        <div className="xl:col-span-4 space-y-6">
+
+                            {/* Trade Terminal (Buy/Sell) */}
                             <PaperTradeTerminal />
-                            <div className="h-[350px]">
+
+                            {/* AI Coach */}
+                            <div className="min-h-[250px]">
                                 <AITradingCoach />
                             </div>
+
+                            {/* Gamification / Leaderboard */}
                             <GamificationPanel />
+
                         </div>
 
                     </div>

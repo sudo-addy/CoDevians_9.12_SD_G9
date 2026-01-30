@@ -10,9 +10,34 @@ interface InvestorHeaderProps {
         kyc_status: string;
     };
     portfolioValue: number;
+    walletBalance: number;
+    dailyPnL: number;
 }
 
-export default function InvestorOverviewHeader({ user, portfolioValue }: InvestorHeaderProps) {
+import { useState } from 'react';
+import PaymentModal from '@/components/dashboard/PaymentModal';
+
+interface InvestorHeaderProps {
+    user: {
+        name: string;
+        subscription_tier: string;
+        kyc_status: string;
+    };
+    portfolioValue: number;
+    walletBalance: number;
+    dailyPnL: number;
+}
+
+export default function InvestorOverviewHeader({ user, portfolioValue, walletBalance, dailyPnL }: InvestorHeaderProps) {
+    const [isPaymentOpen, setIsPaymentOpen] = useState(false);
+    const [displayBalance, setDisplayBalance] = useState(walletBalance);
+
+    // Update local display on successful deposit
+    const handleDepositSuccess = (newBalance: number) => {
+        setDisplayBalance(newBalance);
+        // Ideally we also refresh the global context or parent state
+    };
+
     return (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             {/* Name & Tier */}
@@ -56,21 +81,34 @@ export default function InvestorOverviewHeader({ user, portfolioValue }: Investo
                     </div>
                     <div>
                         <p className="text-xs text-slate-500 uppercase font-bold tracking-wider">Day's P&L</p>
-                        <p className="text-xl font-bold text-green-400">+2.4%</p>
+                        <p className={`text-xl font-bold ${dailyPnL >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                            {dailyPnL >= 0 ? '+' : ''}{dailyPnL}%
+                        </p>
                     </div>
                 </div>
 
-                {/* Wallet Balance */}
-                <div className="bg-slate-900/40 border border-slate-800 backdrop-blur-md rounded-xl p-4 flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400">
-                        <Wallet className="w-5 h-5" />
+                {/* Wallet Balance with Add Button */}
+                <div className="bg-slate-900/40 border border-slate-800 backdrop-blur-md rounded-xl p-4 flex items-center justify-between gap-4 relative group cursor-pointer hover:border-blue-500/30 transition" onClick={() => setIsPaymentOpen(true)}>
+                    <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400">
+                            <Wallet className="w-5 h-5" />
+                        </div>
+                        <div>
+                            <p className="text-xs text-slate-500 uppercase font-bold tracking-wider">Wallet (e₹)</p>
+                            <p className="text-xl font-bold text-white">₹{displayBalance.toLocaleString()}</p>
+                        </div>
                     </div>
-                    <div>
-                        <p className="text-xs text-slate-500 uppercase font-bold tracking-wider">Wallet (e₹)</p>
-                        <p className="text-xl font-bold text-white">₹45,200</p>
+                    <div className="opacity-0 group-hover:opacity-100 absolute right-2 top-2">
+                        <span className="text-[10px] bg-blue-600 text-white px-2 py-1 rounded-md font-bold">+ Add</span>
                     </div>
                 </div>
             </motion.div>
+
+            <PaymentModal
+                isOpen={isPaymentOpen}
+                onClose={() => setIsPaymentOpen(false)}
+                onSuccess={handleDepositSuccess}
+            />
         </div>
     );
 }

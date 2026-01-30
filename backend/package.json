@@ -30,6 +30,7 @@
     "joi": "^17.9.2",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.0",
+    "openai": "^6.17.0",
     "rate-limit-redis": "^4.3.1",
     "redis": "^4.6.5",
     "socket.io": "^4.6.1",

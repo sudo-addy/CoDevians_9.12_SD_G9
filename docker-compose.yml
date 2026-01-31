@@ -66,12 +66,15 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: /api/v1
+        NEXT_PUBLIC_SOCKET_URL: /
     container_name: bond-platform-frontend
     ports:
       - "3000:3000"
     environment:
-      NEXT_PUBLIC_API_URL: http://localhost:3210/api/v1
-      NEXT_PUBLIC_SOCKET_URL: http://localhost:3210
+      NEXT_PUBLIC_API_URL: /api/v1
+      NEXT_PUBLIC_SOCKET_URL: /
     depends_on:
       - backend
     networks:

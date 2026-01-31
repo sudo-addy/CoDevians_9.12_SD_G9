@@ -2,6 +2,7 @@
 
 import { Check, Zap, Crown, Shield } from 'lucide-react';
 import { useState } from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 export function PricingSection() {
@@ -104,14 +105,16 @@ export function PricingSection() {
                                 <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">{tier.description}</p>
                             </div>
 
-                            <button className={`w-full py-3 rounded-xl font-bold transition mb-8
+                            <Link
+                                href={`/payment?plan=${encodeURIComponent(tier.name)}&amount=${tier.price}`}
+                                className={`block w-full text-center py-3 rounded-xl font-bold transition mb-8
                 ${tier.highlight
-                                    ? (tier.color === 'purple'
-                                        ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:shadow-lg hover:shadow-purple-500/25'
-                                        : 'bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/25')
-                                    : 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700'}`}>
+                                        ? (tier.color === 'purple'
+                                            ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:shadow-lg hover:shadow-purple-500/25'
+                                            : 'bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/25')
+                                        : 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700'}`}>
                                 {tier.cta}
-                            </button>
+                            </Link>
 
                             <ul className="space-y-4">
                                 {tier.features.map((feature, index) => (

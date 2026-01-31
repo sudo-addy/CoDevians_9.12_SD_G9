@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import '../styles/globals.css';
 import { ThemeProvider } from '../components/ThemeProvider';
+import { Web3Provider } from '../providers/Web3Provider';
+import { DemoWalletProvider } from '../providers/DemoWalletProvider';
 
 export const metadata: Metadata = {
   title: 'Bond Platform - Tokenized Infrastructure Investments',
@@ -21,11 +23,15 @@ export default function RootLayout({
       </head>
       <body className="bg-gradient-to-b from-slate-50 via-white to-slate-100 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 overflow-x-hidden" suppressHydrationWarning={true}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="min-h-screen flex flex-col font-sans">
-            <main className="flex-1 w-full">
-              {children}
-            </main>
-          </div>
+          <Web3Provider>
+            <DemoWalletProvider>
+              <div className="min-h-screen flex flex-col font-sans">
+                <main className="flex-1 w-full">
+                  {children}
+                </main>
+              </div>
+            </DemoWalletProvider>
+          </Web3Provider>
         </ThemeProvider>
       </body>
     </html>

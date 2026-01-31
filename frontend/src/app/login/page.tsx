@@ -95,10 +95,39 @@ export default function LoginPage() {
     setError('');
 
     try {
-      // Simulate login for demo if backend fails or for UX speed
-      const response = await api.auth.login({ email, password });
+      let response;
 
-      if (response.tokens?.access_token) {
+      // Simulated Login Logic (Bypassing Backend for Demo)
+      if (email === 'retail@mudra.com' && password === 'Retail@CIH2026') {
+        response = {
+          tokens: { access_token: 'simulated_retail_token_' + Date.now() },
+          user: { id: 'r1', name: 'Retail Investor', email, role: 'retail', subscription_tier: 'free' }
+        };
+      } else if (email === 'institution@mudra.demo' && password === 'Inst@CIH2026') {
+        response = {
+          tokens: { access_token: 'simulated_inst_token_' + Date.now() },
+          user: { id: 'i1', name: 'HDFC Treasury', email, role: 'institution', subscription_tier: 'premium' }
+        };
+      } else if (email === 'government@mudra.demo' && password === 'Gov@CIH2026') {
+        response = {
+          tokens: { access_token: 'simulated_govt_token_' + Date.now() },
+          user: { id: 'g1', name: 'Government Official', email, role: 'government', subscription_tier: 'enterprise' }
+        };
+      } else if (email === 'premium@bondplatform.demo' && password === 'Premium@CIH2026') {
+        response = {
+          tokens: { access_token: 'simulated_prem_token_' + Date.now() },
+          user: { id: 'p1', name: 'Premium User', email, role: 'retail', subscription_tier: 'premium' }
+        };
+      } else {
+        // Real Backend Call
+        try {
+          response = await api.auth.login({ email, password });
+        } catch (backendError: any) {
+          throw backendError;
+        }
+      }
+
+      if (response && response.tokens?.access_token) {
         const token = response.tokens.access_token;
         // Store token in localStorage for API requests
         localStorage.setItem('auth_token', token);
